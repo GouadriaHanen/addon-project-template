@@ -8,8 +8,9 @@ public class Hanen_Service {
 		//LOG.info("loged with Hanen_Service! ");
 	}
 	 public String call(String msg) {
-
-		return msg;
+		if (msg.isEmpty()){
+			return "Sorry ! empty msg";
+		 }
+		else return msg;
 		  }
-		
 }
