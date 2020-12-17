@@ -30,4 +30,12 @@
 		<key>org.exoplatform.addons.services.MyService</key>
 		<type>org.exoplatform.addons.services.MyService</type>
 	</component>
+	<component>
+		<key>org.exoplatform.addons.services.Hanen_StartableService</key>
+		<type>org.exoplatform.addons.services.Hanen_StartableService</type>
+	</component>
+	<component>
+		<key>org.exoplatform.addons.services.Hanen_Service</key>
+		<type>org.exoplatform.addons.services.Hanen_Service</type>
+	</component>
 </configuration>
