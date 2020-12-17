@@ -36,7 +36,25 @@
           <artifactId>social-component-core</artifactId>
           <version>6.0.0</version>
       </dependency>
-    
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-core</artifactId>
+          <version>1.1.2</version>
+          <scope>test</scope>
+      </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.2</version>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
+          <version>RELEASE</version>
+          <scope>test</scope>
+      </dependency>
+
   </dependencies>
   <name>Training Exercise - Services</name>
   <build>

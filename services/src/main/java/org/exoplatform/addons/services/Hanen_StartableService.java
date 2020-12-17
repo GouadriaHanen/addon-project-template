@@ -14,8 +14,8 @@ public class Hanen_StartableService implements Startable{
 		 LOG.info("loging in from Hanen_Startable Service !");
 		 PortalContainer portalContainer = (PortalContainer) ExoContainerContext.getCurrentContainer();
 		Hanen_Service myNewService = (Hanen_Service) portalContainer.getComponentInstance(Hanen_Service.class);
-		    LOG.info(" Calling function call of Hanen_Service !");
-		    myNewService.call();
+		    LOG.info(myNewService.call(" Calling function call of Hanen_Service !"));
+
 	}
 	@Override
 	public void stop() {
