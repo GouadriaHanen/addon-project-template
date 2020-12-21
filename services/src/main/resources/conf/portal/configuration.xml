@@ -25,4 +25,5 @@
     <component>
         <type>org.exoplatform.commons.persistence.impl.EntityManagerService</type>
     </component>
+
 </configuration>

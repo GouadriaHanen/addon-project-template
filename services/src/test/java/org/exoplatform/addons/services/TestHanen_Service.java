@@ -4,13 +4,16 @@ import org.exoplatform.addons.entity.TestCases;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestHanen_Service {
     Hanen_Service service = new Hanen_Service();
     String msg = " Calling function call of Hanen_Service !";
-    String emptyString ;
+
+    public TestHanen_Service() throws RepositoryException {
+    }
 
     public List<TestCases> TestData () {
         TestCases validTestCaseA = new TestCases("valid",msg,msg);

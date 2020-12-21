@@ -31,30 +31,16 @@
       <artifactId>commons-api</artifactId>
       <version>${platform.version}</version>
     </dependency>
-      <dependency>
-          <groupId>org.exoplatform.social</groupId>
-          <artifactId>social-component-core</artifactId>
-          <version>6.0.0</version>
-      </dependency>
-      <dependency>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-core</artifactId>
-          <version>1.1.2</version>
-          <scope>test</scope>
-      </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.1.2</version>
-      <scope>test</scope>
+      <groupId>org.exoplatform.social</groupId>
+      <artifactId>social-component-core-jpa</artifactId>
+      <version>5.0.0-RC13</version>
     </dependency>
-      <dependency>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter</artifactId>
-          <version>RELEASE</version>
-          <scope>test</scope>
-      </dependency>
-
+    <dependency>
+      <groupId>org.exoplatform.social</groupId>
+      <artifactId>social-component-core-jpa</artifactId>
+      <version>5.0.0-RC13</version>
+    </dependency>
   </dependencies>
   <name>Training Exercise - Services</name>
   <build>
