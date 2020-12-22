@@ -86,9 +86,9 @@ public class Hanen_Service {
 		try {
 			QueryManager qm = Session.getWorkspace().getQueryManager();
 			String title = act.getTitle() ;
-			Query q = qm.createQuery("delete from exo:FavoriteActivity where title=?",Query.SQL);
+			String query = "delete from exo:FavoriteActivity where title=="+act.getTitle() ;
+			Query q = qm.createQuery(query,Query.SQL);
 			q.execute() ;
-
 		}
 		catch(Exception e){
 			e.printStackTrace();
