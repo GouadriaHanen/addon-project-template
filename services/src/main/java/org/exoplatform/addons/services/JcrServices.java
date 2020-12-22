@@ -35,7 +35,7 @@ public class JcrServices {
     }
 
     //Add Activity JCR
-    public void addActivity (FavoriteAcitvity act ) throws RepositoryException {
+    public boolean AddActivity (FavoriteAcitvity act ) throws RepositoryException {
         try{
             //Create a node that represents the root node
             Node root = Session.getRootNode();
@@ -49,6 +49,7 @@ public class JcrServices {
         catch(Exception e){
             e.printStackTrace();
         }
+        return true ;
     }
 
     //get All activities JCR
@@ -72,17 +73,19 @@ public class JcrServices {
         return acts ;
     }
 
-    public void RemoveActivity (FavoriteAcitvity  act) throws RepositoryException  {
+    public Boolean RemoveActivity (FavoriteAcitvity  act) throws RepositoryException  {
         try {
             QueryManager qm = Session.getWorkspace().getQueryManager();
             String title = act.getTitle() ;
             String query = "delete from exo:FavoriteActivity where Title=="+act.getTitle() ;
             Query q = qm.createQuery(query,Query.SQL);
             q.execute() ;
+            Session.save();
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        return true ;
     }
 
 }
