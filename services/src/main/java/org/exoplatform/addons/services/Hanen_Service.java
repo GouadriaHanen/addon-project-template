@@ -28,7 +28,8 @@ public class Hanen_Service {
 		//get container
 		this.MyContainer = ExoContainerContext.getCurrentContainer();
 		//get repo service
-		this.RepositoryService = (RepositoryService) MyContainer. getComponentInstanceOfType(RepositoryService.class);
+		this.RepositoryService = (RepositoryService) MyContainer. getComponentInstance(RepositoryService.class);
+		// *** == > Reposervice is null ! whyy ??
 		//get current repo
 		this.Repository =   RepositoryService.getCurrentRepository();
 		//creating system session-provider
@@ -86,7 +87,7 @@ public class Hanen_Service {
 		try {
 			QueryManager qm = Session.getWorkspace().getQueryManager();
 			String title = act.getTitle() ;
-			String query = "delete from exo:FavoriteActivity where title=="+act.getTitle() ;
+			String query = "delete from exo:FavoriteActivity where Title=="+act.getTitle() ;
 			Query q = qm.createQuery(query,Query.SQL);
 			q.execute() ;
 		}
