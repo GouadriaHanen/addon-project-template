@@ -1,6 +1,7 @@
 package org.exoplatform.addons.services;
 
 import org.exoplatform.addons.entity.TestCases;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,10 +13,12 @@ import static java.lang.System.out;
 
 public class TestHanen_Service {
 
-    Hanen_Service  service = new Hanen_Service ();
+    Hanen_Service  service =new Hanen_Service();
     String msg = " Calling done!";
 
-    public TestHanen_Service() throws RepositoryException { }
+    public TestHanen_Service() {
+
+    }
 
     public List<TestCases> TestData () {
         TestCases validTestCaseA = new TestCases("valid",msg,msg);
@@ -32,10 +35,10 @@ public class TestHanen_Service {
             System.out.println(testDatum.getName());
             System.out.println(testDatum.getInput());
             System.out.println(testDatum.getExpectedOutput());
-            //String input = testDatum.getInput();
-            //    String outPut= service.call(input);
-            out.println("outPut " + " service  " + service);
-            //Assert.assertEquals(testData.get(i).getExpectedOutput(),outPut);
+            String input = testDatum.getInput();
+            String outPut= service.call(input);
+            System.out.println("outPut " + " service  " + service);
+            Assert.assertEquals(testDatum.getExpectedOutput(),outPut);
         }
     }
 }
