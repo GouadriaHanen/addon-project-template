@@ -6,7 +6,7 @@ import org.exoplatform.commons.persistence.impl.GenericDAOJPAImpl;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class JPA_dao extends GenericDAOJPAImpl{
+public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
 
     public JPA_dao() {
         super();
