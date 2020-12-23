@@ -10,7 +10,7 @@ import java.util.List;
 public class JPA_Services extends GenericDAOJPAImpl {
     EntityManager em= getEntityManager() ;
     public JPA_Services() {
-       // EntityManagerFactory factory = Persistence.createEntityManagerFactory("ali");
+       // EntityManagerFactory factory = Persistence.createEntityManagerFactory("plf_jpa");
        // this.em=factory.createEntityManager();
     }
 

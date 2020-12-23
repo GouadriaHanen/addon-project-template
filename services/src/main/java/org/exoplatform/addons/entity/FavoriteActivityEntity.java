@@ -2,7 +2,6 @@ package org.exoplatform.addons.entity;
 
 import org.exoplatform.commons.api.persistence.ExoEntity;
 import org.exoplatform.social.core.jpa.storage.entity.ActivityEntity;
-import org.exoplatform.social.core.jpa.storage.entity.IdentityEntity;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -15,7 +14,8 @@ public class FavoriteActivityEntity {
     private Long ID;
     @Column(name = "Activity_Title")
     private String ActivityTitle;
-    @Column(name = "Target_Activity")
+    @ManyToOne
+    @JoinColumn(name = "Target_Entity_Id")
     private ActivityEntity TargetActivity;
     @Column(name = "Favorite_Date")
     private Calendar favoriteDate;
