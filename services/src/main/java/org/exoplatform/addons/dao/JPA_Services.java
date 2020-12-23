@@ -36,7 +36,7 @@ public class JPA_Services extends GenericDAOJPAImpl {
       return act ;
     }
 
-    @ExoTransactional
+   // @ExoTransactional
     public FavoriteActivityEntity Update(FavoriteActivityEntity act) {
         em.getTransaction().begin();
         em.merge(act);
