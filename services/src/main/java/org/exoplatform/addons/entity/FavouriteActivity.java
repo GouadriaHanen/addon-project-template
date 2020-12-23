@@ -26,6 +26,9 @@ public class FavouriteActivity {
     @Column(name = "FAVOURITE_DATE")
     private Calendar favouriteDate;
 
+
+
+
     public Long getId() {
         return id;
     }
