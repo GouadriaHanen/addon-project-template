@@ -30,9 +30,9 @@ public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
         return (FavoriteActivityEntity) update(act);
     }
 
-    public Object deleteAct (FavoriteActivityEntity act) {
-      delete(act);
-       return find(act.getID());
+    public Object deleteAct (Long Id) {
+        delete(find(Id));
+       return find(Id);
     }
 
 }

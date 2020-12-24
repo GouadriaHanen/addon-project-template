@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.Calendar;
 
 public class TestJPA_Services {
-    JPA_dao dao = new JPA_dao();
+  /*  JPA_dao dao = new JPA_dao();
     public TestJPA_Services() {}
 
     @Test
@@ -16,5 +16,5 @@ public class TestJPA_Services {
         FavoriteActivityEntity act = new FavoriteActivityEntity(1L,"act1",new ActivityEntity(), c);
         FavoriteActivityEntity outPut = dao.AddAct(act);
         Assert.assertNotNull(outPut);
-    }
+    }*/
 }

@@ -7,12 +7,14 @@ import org.exoplatform.services.rest.resource.ResourceContainer;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
 @Path("/v1/Acts")
 @Produces("application/json")
 public class RestFavActService implements ResourceContainer {
+
     private JPA_dao dao ;
 
     public RestFavActService(JPA_dao dao) {
@@ -25,6 +27,7 @@ public class RestFavActService implements ResourceContainer {
     public String hello(@PathParam("name") String name) {
         return "Hello " + name;
     }
+
     @POST
     @Path("/addAct")
     @RolesAllowed({"users"})
@@ -33,35 +36,41 @@ public class RestFavActService implements ResourceContainer {
          FavoriteActivityEntity res = dao.AddAct(act);
         return Response.ok(res).build();
     }
+
+    @POST
+    @Path("/update")
+    @RolesAllowed({"users"})
+    public Response Update(@ApiParam(value = "News", required = true) FavoriteActivityEntity act )//RequestBody ??
+     {  //TODO convert to JSON
+         FavoriteActivityEntity res = dao.Update(act);
+        return Response.ok(res).build();
+    }
+
+    @GET
+    @Path("/acts")
+    @RolesAllowed({"users"})
+    public Response GetAll()//RequestBody ??
+    {  //TODO convert to JSON
+        FavoriteActivityEntity res = (FavoriteActivityEntity) dao.FindAllActs();
+        return Response.ok(res).build();
+    }
+
     @GET
     @Path("/act/{id}")
     @RolesAllowed({"users"})
-    public Response GetById(@PathParam("id") Long id )//RequestBody ??
+    public Response GetById(@PathParam("id") Long id )
      {  //TODO convert to JSON
          FavoriteActivityEntity res = dao.FindActById(id);
         return Response.ok(res).build();
     }
-    @GET
+
+    @DELETE
     @Path("/delete/{id}")
     @RolesAllowed({"users"})
-    public Response deleteById(@PathParam("id") Long id )//RequestBody ??
-     {  //TODO convert to JSON
-         FavoriteActivityEntity res = dao.rem(id);
+    public Response deleteById(@PathParam("id") Long id )
+     {
+         FavoriteActivityEntity res = (FavoriteActivityEntity) dao.deleteAct(id);
         return Response.ok(res).build();
     }
-    @GET
-    @Path("/acts/{id}")
-    @RolesAllowed({"users"})
-    public Response GetAll()//RequestBody ??
-     {  //TODO convert to JSON
-         FavoriteActivityEntity res = (FavoriteActivityEntity) dao.FindAllActs();
-        return Response.ok(res).build();
-    }
-
-
-
-
-
-
 
 }

@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class TestJcrServices {
-    JcrServices service = new JcrServices();
+  /*  JcrServices service = new JcrServices();
     int AddedActsCount ;
     public TestJcrServices() throws RepositoryException {}
 
@@ -32,7 +32,7 @@ public class TestJcrServices {
         FavoriteAcitvity act = new FavoriteAcitvity("FirstAct","/link", new Date().toString()) ;
         boolean outPut=service.RemoveActivity(act);
         Assert.assertTrue(outPut);
-    }
+    } */
 
 
 }
