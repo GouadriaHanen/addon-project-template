@@ -15,6 +15,7 @@ import java.util.Calendar;
 
 @Path("/v1/favAct")
 @Produces("application/json")
+@Consumes("application/json")
 public class RestFavActService implements ResourceContainer {
 
     private JPA_dao dao =new JPA_dao();
@@ -33,10 +34,8 @@ public class RestFavActService implements ResourceContainer {
     @POST
     @Path("/add")
    // @RolesAllowed({"users"})
-    public Response Add()//RequestBody ??
-     {      Calendar c = Calendar.getInstance();
-         ActivityEntity newact=new ActivityEntity() ;
-         FavoriteActivityEntity act = new FavoriteActivityEntity(1L,"act1",newact, c);
+    public Response Add(FavoriteActivityEntity act)//RequestBody ??
+     {
          dao.AddAct(act);
          return Response.ok().build();
     }

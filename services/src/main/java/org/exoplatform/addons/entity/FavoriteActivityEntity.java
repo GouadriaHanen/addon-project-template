@@ -29,6 +29,8 @@ public class FavoriteActivityEntity {
         this.favoriteDate = favoriteDate;
     }
 
+
+
     public Long getID() {
         return ID;
     }
