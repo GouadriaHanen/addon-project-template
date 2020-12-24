@@ -26,6 +26,6 @@
         <type>org.exoplatform.commons.persistence.impl.EntityManagerService</type>
     </component>
     <component>
-        <type>exo.rest.service.RestUserService</type>
+        <type>exo.rest.services.RestFavActService</type>
     </component>
 </configuration>

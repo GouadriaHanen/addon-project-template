@@ -4,43 +4,47 @@ import io.swagger.annotations.ApiParam;
 import org.exoplatform.addons.dao.JPA_dao;
 import org.exoplatform.addons.entity.FavoriteActivityEntity;
 import org.exoplatform.services.rest.resource.ResourceContainer;
+import org.exoplatform.social.core.jpa.storage.entity.ActivityEntity;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Calendar;
 
 
-@Path("/v1/Acts")
+@Path("/v1/favAct")
 @Produces("application/json")
 public class RestFavActService implements ResourceContainer {
 
-    private JPA_dao dao ;
+    private JPA_dao dao =new JPA_dao();
 
-    public RestFavActService(JPA_dao dao) {
-        this.dao = dao;
+
+    public RestFavActService() {
     }
+
 
     @GET
     @Path("/hello/{name}")
-    @RolesAllowed({"users"})
     public String hello(@PathParam("name") String name) {
         return "Hello " + name;
     }
 
     @POST
-    @Path("/addAct")
-    @RolesAllowed({"users"})
-    public Response Add(@ApiParam(value = "News", required = true) FavoriteActivityEntity act )//RequestBody ??
-     {
-         FavoriteActivityEntity res = dao.AddAct(act);
-        return Response.ok(res).build();
+    @Path("/add")
+   // @RolesAllowed({"users"})
+    public Response Add()//RequestBody ??
+     {      Calendar c = Calendar.getInstance();
+         ActivityEntity newact=new ActivityEntity() ;
+         FavoriteActivityEntity act = new FavoriteActivityEntity(1L,"act1",newact, c);
+         dao.AddAct(act);
+         return Response.ok().build();
     }
 
-    @POST
+    @PUT
     @Path("/update")
-    @RolesAllowed({"users"})
-    public Response Update(@ApiParam(value = "News", required = true) FavoriteActivityEntity act )//RequestBody ??
+    //@RolesAllowed({"users"})
+    public Response Update(@ApiParam(value = "act", required = true) FavoriteActivityEntity act )//RequestBody ??
      {  //TODO convert to JSON
          FavoriteActivityEntity res = dao.Update(act);
         return Response.ok(res).build();
@@ -48,7 +52,7 @@ public class RestFavActService implements ResourceContainer {
 
     @GET
     @Path("/acts")
-    @RolesAllowed({"users"})
+ //   @RolesAllowed({"users"})
     public Response GetAll()//RequestBody ??
     {  //TODO convert to JSON
         FavoriteActivityEntity res = (FavoriteActivityEntity) dao.FindAllActs();
@@ -57,7 +61,7 @@ public class RestFavActService implements ResourceContainer {
 
     @GET
     @Path("/act/{id}")
-    @RolesAllowed({"users"})
+   // @RolesAllowed({"users"})
     public Response GetById(@PathParam("id") Long id )
      {  //TODO convert to JSON
          FavoriteActivityEntity res = dao.FindActById(id);
@@ -66,7 +70,7 @@ public class RestFavActService implements ResourceContainer {
 
     @DELETE
     @Path("/delete/{id}")
-    @RolesAllowed({"users"})
+   // @RolesAllowed({"users"})
     public Response deleteById(@PathParam("id") Long id )
      {
          FavoriteActivityEntity res = (FavoriteActivityEntity) dao.deleteAct(id);

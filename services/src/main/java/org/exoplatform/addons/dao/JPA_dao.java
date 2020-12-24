@@ -13,12 +13,13 @@ public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
     }
 
     //AddAct adds a new FavoriteActivityEntity
-    public FavoriteActivityEntity AddAct(FavoriteActivityEntity act) {
-         return (FavoriteActivityEntity) create(act);
+    public void AddAct(FavoriteActivityEntity act) {
+          create(act);
     }
 
     public List<FavoriteActivityEntity> FindAllActs() {
-        return  findAll();
+        List<FavoriteActivityEntity> l = findAll();
+        return  l;
     }
 
     public FavoriteActivityEntity FindActById(Long Id) {
