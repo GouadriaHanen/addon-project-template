@@ -37,7 +37,7 @@ public class RestFavActService implements ResourceContainer {
     public Response Add(FavoriteActivityEntity act)//RequestBody ??
      {
          dao.AddAct(act);
-         return Response.ok().build();
+         return Response.ok("success").build();
     }
 
     @PUT
