@@ -14,7 +14,8 @@ public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
 
     //AddAct adds a new FavoriteActivityEntity
     public void AddAct(FavoriteActivityEntity act) {
-          create(act);
+        EntityManager em = getEntityManager();
+        em.persist(act);
     }
 
     public List<FavoriteActivityEntity> FindAllActs() {
