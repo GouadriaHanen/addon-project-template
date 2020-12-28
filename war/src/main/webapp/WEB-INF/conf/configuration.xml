@@ -38,4 +38,8 @@
 		<key>org.exoplatform.addons.services.Hanen_Service</key>
 		<type>org.exoplatform.addons.services.Hanen_Service</type>
 	</component>
+	<component>
+		<key>org.exoplatform.addons.dao.JPA_dao</key>
+		<type>org.exoplatform.addons.dao.JPA_dao </type>
+	</component>
 </configuration>

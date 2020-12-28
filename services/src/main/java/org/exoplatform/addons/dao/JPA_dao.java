@@ -10,18 +10,14 @@ import java.util.List;
 
 public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
 
-
-    protected Class<FavoriteActivityEntity> modelClass;
-    public JPA_dao() { }
-
      public String testing(){
         return getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().toString();
      }
+
     //AddAct adds a new FavoriteActivityEntity
     public boolean AddAct(FavoriteActivityEntity act) {
         EntityManager em= getEntityManager() ;
         em.persist(act);
-        em.contains(act);
         return em.contains(act);
     }
 

@@ -34,9 +34,11 @@
     <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
 
     <changeSet author="addon-training" id="1.0.0-1">
+        <validCheckSum>7:2e04285a514175c90b6003b1934b4191</validCheckSum>
         <createTable tableName="ADDON_FAVORITE_ACTIVITY">
+
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}" startWith="1">
-                <constraints nullable="false" primaryKey="true" ></constraints>
+                <constraints nullable="false" primaryKey="true"  primaryKeyName="PK_FAVORITE_ACTIVITY"></constraints>
             </column>
             <column name="Favorite_Date" type="TIMESTAMP">
                 <constraints nullable="true"/>
