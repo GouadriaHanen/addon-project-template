@@ -84,7 +84,11 @@
       <version>1.0</version>
       <scope>provided</scope>
     </dependency>
-
+    <dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>4.3.6.Final</version>
+    </dependency>
   </dependencies>
   <name>Training Exercise - Services</name>
   <build>

@@ -34,18 +34,18 @@
     <property name="now" value="CURRENT_TIMESTAMP" dbms="mssql"/>
 
     <changeSet author="addon-training" id="1.0.0-1">
-        <createTable tableName="ADDON_FAVOURITE_ACTIVITY">
+        <createTable tableName="ADDON_FAVORITE_ACTIVITY">
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}" startWith="1">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_FAVOURITE_ACTIVITY"></constraints>
+                <constraints nullable="false" primaryKey="true" ></constraints>
             </column>
-            <column name="FAVOURITE_DATE" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="FAVOURITE_BY_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="ACTIVITY_ID" type="BIGINT">
+            <column name="Favorite_Date" type="TIMESTAMP">
                 <constraints nullable="true"/>
+            </column>
+            <column name="Target_Entity_Id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="Activity_Title" type="TEXT">
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <modifySql dbms="mysql">
