@@ -1,18 +1,16 @@
 package exo.rest.services;
 
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.collections.MultiMap;
 import org.exoplatform.addons.dao.JPA_dao;
 import org.exoplatform.addons.entity.FavoriteActivityEntity;
-import org.exoplatform.addons.services.Hanen_StartableService;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.exoplatform.services.rest.resource.ResourceContainer;
-import org.exoplatform.social.core.jpa.storage.entity.ActivityEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Calendar;
@@ -33,6 +31,7 @@ public class RestFavActService implements ResourceContainer {
 
     @GET
     @Path("/hello/{name}")
+    @RolesAllowed("users")
     public String hello(@PathParam("name") String name) {
         LOG.info("hello API");
         return "Hello " + name ;

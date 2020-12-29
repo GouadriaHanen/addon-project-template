@@ -14,37 +14,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JcrServices {
-    private ExoContainer MyContainer ;
-    private org.exoplatform.services.jcr.RepositoryService RepositoryService;
-    private org.exoplatform.services.jcr.ext.common.SessionProvider SessionProvider ;
-    private ManageableRepository Repository ;
-    private javax.jcr.Session Session ;
+    private ExoContainer myContainer ;
+    private RepositoryService repositoryService;
+    private SessionProvider sessionProvider ;
+    private ManageableRepository repository ;
+    private Session session;
 
     public JcrServices() throws RepositoryException {
         //get container
-        this.MyContainer = ExoContainerContext.getCurrentContainer();
+        this.myContainer = ExoContainerContext.getCurrentContainer();
         //get repo service
-        this.RepositoryService = (RepositoryService) MyContainer. getComponentInstance(RepositoryService.class);
+        this.repositoryService = (RepositoryService) myContainer. getComponentInstance(RepositoryService.class);
         // *** == > Reposervice is null ! whyy ??
         //get current repo
-        this.Repository =   this.RepositoryService.getCurrentRepository();
+        this.repository =   this.repositoryService.getCurrentRepository();
         //creating system session-provider
-        this.SessionProvider = SessionProvider.createSystemProvider();
+        this.sessionProvider = SessionProvider.createSystemProvider();
         //session
-        this.Session = SessionProvider.getSession(Repository.getConfiguration().getDefaultWorkspaceName(), Repository);
+        this.session = sessionProvider.getSession(repository.getConfiguration().getDefaultWorkspaceName(), repository);
     }
 
     //Add Activity JCR
     public boolean AddActivity (FavoriteAcitvity act ) throws RepositoryException {
         try{
             //Create a node that represents the root node
-            Node root = Session.getRootNode();
+            Node root = session.getRootNode();
             Node value= root.addNode("exo:FavoriteActivity");
             value.setProperty("Title",act.getTitle());
             value.setProperty("Link",act.getLink());
             value.setProperty("Publication Date",act.getPublication_Date().toString());
             // Save the session changes
-            Session.save();
+            session.save();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -56,7 +56,7 @@ public class JcrServices {
     public List<FavoriteAcitvity> FindAll() throws RepositoryException {
         List <FavoriteAcitvity> acts = new ArrayList<>();
         try {
-            QueryManager qm = Session.getWorkspace().getQueryManager();
+            QueryManager qm = session.getWorkspace().getQueryManager();
             Query q = qm.createQuery("select * from exo:FavoriteActivity", Query.SQL);
             NodeIterator ni = q.execute().getNodes();
             while (ni.hasNext()) {
@@ -75,12 +75,12 @@ public class JcrServices {
 
     public Boolean RemoveActivity (FavoriteAcitvity  act) throws RepositoryException  {
         try {
-            QueryManager qm = Session.getWorkspace().getQueryManager();
+            QueryManager qm = session.getWorkspace().getQueryManager();
             String title = act.getTitle() ;
             String query = "delete from exo:FavoriteActivity where Title=="+act.getTitle() ;
             Query q = qm.createQuery(query,Query.SQL);
             q.execute() ;
-            Session.save();
+            session.save();
         }
         catch(Exception e){
             e.printStackTrace();

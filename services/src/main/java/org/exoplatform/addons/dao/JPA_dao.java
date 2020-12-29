@@ -5,8 +5,6 @@ import org.exoplatform.addons.entity.FavoriteActivityEntity;
 import org.exoplatform.commons.persistence.impl.GenericDAOJPAImpl;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -43,13 +41,12 @@ public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
         EntityManager em= getEntityManager() ;
         em.getTransaction().begin();
         Query q = em.createQuery("select f from FavoriteActivityEntity f where f.ID= :idd");
-        q.setParameter("idd", Id).getSingleResult();
+        q.setParameter("idd", Id);
         FavoriteActivityEntity res = (FavoriteActivityEntity) q.getSingleResult();
         em.getTransaction().commit();
         return res;
     }
 
-    // @ExoTransactional
     public FavoriteActivityEntity Update(FavoriteActivityEntity act) {
         LOG.info("act ID="+act.getID());
         EntityManager em= getEntityManager() ;
