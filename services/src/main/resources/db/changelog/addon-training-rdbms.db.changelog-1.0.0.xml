@@ -44,7 +44,7 @@
                 <constraints nullable="true"/>
             </column>
             <column name="Target_Entity_Id" type="BIGINT">
-                <constraints nullable="true"/>
+                <constraints nullable="true" foreignKeyName="FK_Target_Entity_Id" references="SOC_ACTIVITIES(ACTIVITY_ID)"/>
             </column>
             <column name="Activity_Title" type="TEXT">
                 <constraints nullable="false"/>

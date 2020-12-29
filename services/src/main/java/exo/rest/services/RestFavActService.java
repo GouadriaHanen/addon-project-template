@@ -4,13 +4,18 @@ import io.swagger.annotations.ApiParam;
 import org.apache.commons.collections.MultiMap;
 import org.exoplatform.addons.dao.JPA_dao;
 import org.exoplatform.addons.entity.FavoriteActivityEntity;
+import org.exoplatform.addons.services.Hanen_StartableService;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 import org.exoplatform.services.rest.resource.ResourceContainer;
+import org.exoplatform.social.core.jpa.storage.entity.ActivityEntity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -20,7 +25,7 @@ import java.util.List;
 public class RestFavActService implements ResourceContainer {
 
     private JPA_dao dao =new JPA_dao();
-
+    private static final Log LOG = ExoLogger.getExoLogger(RestFavActService.class);
 
     public RestFavActService() {
     }
@@ -29,6 +34,7 @@ public class RestFavActService implements ResourceContainer {
     @GET
     @Path("/hello/{name}")
     public String hello(@PathParam("name") String name) {
+        LOG.info("hello API");
         return "Hello " + name ;
     }
 
@@ -36,8 +42,11 @@ public class RestFavActService implements ResourceContainer {
     @Path("/add")
     public Response Add(@ApiParam(value = "act", required = true) FavoriteActivityEntity act)
      {
+         LOG.info("ADD API");
+         act.setFavoriteDate(Calendar.getInstance());
+         LOG.info("act to add :"+act.getFavoriteDate());
          dao.AddAct(act);
-         return Response.ok(act).build();
+         return Response.ok().build();
     }
 
     @PUT
@@ -51,7 +60,9 @@ public class RestFavActService implements ResourceContainer {
     @GET
     @Path("/acts")
     public Response GetAll() throws JSONException {
+        LOG.info("GetAll API");
         List<FavoriteActivityEntity> res = dao.FindAllActs();
+        LOG.info("result    "+res);
         JSONArray list = new JSONArray();
         for (int i = 0; i<res.size(); i++) {
 
@@ -59,7 +70,7 @@ public class RestFavActService implements ResourceContainer {
             jsonObject.put("ID", res.get(i).getID());
             jsonObject.put("activity_Title", res.get(i).getActivityTitle());
             jsonObject.put("target", res.get(i).getTargetActivity());
-            jsonObject.put("Date", res.get(i).getFavoriteDate());
+            jsonObject.put("Calender", res.get(i).getFavoriteDate());
 
             list.put(jsonObject);
         }
@@ -71,11 +82,12 @@ public class RestFavActService implements ResourceContainer {
     public Response GetById(@PathParam("id") Long id ) throws JSONException {
         //TODO convert to JSON
          FavoriteActivityEntity res = dao.FindActById(id);
+        LOG.info("result    "+res);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("ID", res.getID());
         jsonObject.put("activity_Title", res.getActivityTitle());
         jsonObject.put("target", res.getTargetActivity());
-        jsonObject.put("Date", res.getFavoriteDate());
+        jsonObject.put("Calender", res.getFavoriteDate());
         return Response.ok(jsonObject.toString()).build();
     }
 
@@ -83,6 +95,13 @@ public class RestFavActService implements ResourceContainer {
     @Path("/delete/{id}")
     public Response deleteById(@PathParam("id") Long id ){
         dao.deleteAct(id);
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("/deleteAll")
+    public Response deleteAll(){
+        dao.deleteAll();
         return Response.ok().build();
     }
 

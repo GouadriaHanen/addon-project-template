@@ -1,52 +1,78 @@
 package org.exoplatform.addons.dao;
 
+import exo.rest.services.RestFavActService;
 import org.exoplatform.addons.entity.FavoriteActivityEntity;
 import org.exoplatform.commons.persistence.impl.GenericDAOJPAImpl;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 public class JPA_dao extends GenericDAOJPAImpl<FavoriteActivityEntity,Long>{
 
-     public String testing(){
-        return getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().toString();
-     }
+    private static final Log LOG = ExoLogger.getExoLogger(RestFavActService.class);
+    public JPA_dao() {
+    }
 
     //AddAct adds a new FavoriteActivityEntity
-    public boolean AddAct(FavoriteActivityEntity act) {
+    public void AddAct(FavoriteActivityEntity act) {
+        LOG.info("adding "+act.getActivityTitle());
         EntityManager em= getEntityManager() ;
+        em.getTransaction().begin();
         em.persist(act);
-        return em.contains(act);
+        em.getTransaction().commit();
     }
 
     public List<FavoriteActivityEntity> FindAllActs() {
-
-        return getEntityManager().createQuery("select f from FavoriteActivityEntity f").getResultList();
+        EntityManager em= getEntityManager() ;
+        em.getTransaction().begin();
+        LOG.info("EM propbreties :" +em.getProperties());
+        Query q = em.createQuery("select f from FavoriteActivityEntity f  ");
+        LOG.info("query :"+q.toString());
+        List<FavoriteActivityEntity> l = q.getResultList();
+        LOG.info("result list : "+q.getResultList());
+        em.getTransaction().commit();
+        return l;
     }
 
     public FavoriteActivityEntity FindActById(Long Id) {
-        return (FavoriteActivityEntity) getEntityManager().createQuery("select f from FavoriteActivityEntity f where f.ID="+Id).getSingleResult();
+        EntityManager em= getEntityManager() ;
+        em.getTransaction().begin();
+        Query q = em.createQuery("select f from FavoriteActivityEntity f where f.ID= :idd");
+        q.setParameter("idd", Id).getSingleResult();
+        FavoriteActivityEntity res = (FavoriteActivityEntity) q.getSingleResult();
+        em.getTransaction().commit();
+        return res;
     }
 
     // @ExoTransactional
     public FavoriteActivityEntity Update(FavoriteActivityEntity act) {
+        LOG.info("act ID="+act.getID());
         EntityManager em= getEntityManager() ;
+        em.getTransaction().begin();
         em.merge(act);
-        return FindActById(act.getID());
+        em.getTransaction().commit();
+        FavoriteActivityEntity res = FindActById(act.getID());
+        return res;
     }
 
     public void deleteAct (Long id) {
+        FavoriteActivityEntity act = FindActById(id);
         EntityManager em= getEntityManager() ;
-        em.remove(FindActById(id));
+        em.getTransaction().begin();
+        em.remove(act);
+        em.getTransaction().commit();
     }
-
-    public JSONObject ChangeToJSON (FavoriteActivityEntity act) throws JSONException {
-        JSONObject data = new JSONObject(act.toString());
-        return data ;
+    public void deleteAll () {
+        EntityManager em= getEntityManager() ;
+        em.getTransaction().begin();
+        em.createQuery("delete from FavoriteActivityEntity ").executeUpdate();
+        em.getTransaction().commit();
     }
-
 
 
 }

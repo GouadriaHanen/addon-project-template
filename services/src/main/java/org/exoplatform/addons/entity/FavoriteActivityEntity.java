@@ -24,8 +24,8 @@ public class FavoriteActivityEntity {
 
     public FavoriteActivityEntity(Long ID, String activityTitle, ActivityEntity targetActivity, Calendar favoriteDate) {
         this.ID = ID;
-        ActivityTitle = activityTitle;
-        TargetActivity = targetActivity;
+        this.ActivityTitle = activityTitle;
+        this.TargetActivity = targetActivity;
         this.favoriteDate = favoriteDate;
     }
 
