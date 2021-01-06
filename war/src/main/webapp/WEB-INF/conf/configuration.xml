@@ -42,4 +42,5 @@
 		<key>org.exoplatform.addons.dao.JPA_dao</key>
 		<type>org.exoplatform.addons.dao.JPA_dao </type>
 	</component>
+
 </configuration>

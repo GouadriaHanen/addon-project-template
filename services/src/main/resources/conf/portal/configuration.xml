@@ -28,4 +28,13 @@
     <component>
         <type>exo.rest.services.RestFavActService</type>
     </component>
+    <external-component-plugins>
+        <target-component>org.exoplatform.services.organization.OrganizationService</target-component>
+        <component-plugin>
+            <name>send.mail.added.user</name>
+            <set-method>addListenerPlugin</set-method>
+            <type>org.exoplatform.addons.listener.AddUserListener</type>
+            <description>snd mail to account user</description>
+        </component-plugin>
+    </external-component-plugins>
 </configuration>
