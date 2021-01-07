@@ -28,6 +28,10 @@ public class LoggedUserListener extends Listener<ConversationRegistry, Conversat
         this.container = container;
     }
 
+    public LoggedUserListener() {
+
+    }
+
     @Override
     public void onEvent(Event<ConversationRegistry, ConversationState> event) throws Exception
     {

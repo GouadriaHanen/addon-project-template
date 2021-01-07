@@ -28,6 +28,40 @@
     <component>
         <type>exo.rest.services.RestFavActService</type>
     </component>
+    <component>
+        <type>org.exoplatform.services.scheduler.impl.QuartzSheduler</type>
+    </component>
+    <component>
+        <type>org.exoplatform.services.scheduler.QueueTasks</type>
+    </component>
+    <component>
+        <key>org.exoplatform.services.scheduler.JobSchedulerService</key>
+        <type>org.exoplatform.services.scheduler.impl.JobSchedulerServiceImpl</type>
+    </component>
+    <component>
+        <key>org.exoplatform.addons.services.MyStartableService</key>
+        <type>org.exoplatform.addons.services.MyStartableService</type>
+    </component>
+    <component>
+        <key>org.exoplatform.addons.services.MyService</key>
+        <type>org.exoplatform.addons.services.MyService</type>
+    </component>
+    <component>
+        <key>org.exoplatform.addons.services.Hanen_StartableService</key>
+        <type>org.exoplatform.addons.services.Hanen_StartableService</type>
+    </component>
+    <component>
+        <key>org.exoplatform.addons.services.Hanen_Service</key>
+        <type>org.exoplatform.addons.services.Hanen_Service</type>
+    </component>
+    <component>
+        <key>org.exoplatform.addons.dao.JPA_dao</key>
+        <type>org.exoplatform.addons.dao.JPA_dao </type>
+    </component>
+    <component>
+        <key>org.exoplatform.addons.services.LoggedInCountJob</key>
+        <type>org.exoplatform.addons.services.LoggedInCountJob</type>
+    </component>
     <external-component-plugins>
         <target-component>org.exoplatform.services.organization.OrganizationService</target-component>
         <component-plugin>
@@ -47,4 +81,29 @@
         <description>add and count user logged in</description>
     </component-plugin>
     </external-component-plugins>
+
+    <!-- JOBS -->
+    <external-component-plugins>
+        <target-component>org.exoplatform.services.scheduler.JobSchedulerService</target-component>
+        <component-plugin>
+            <name>CountLoggedInStatisticJob</name>
+            <set-method>addPeriodJob</set-method>
+            <type>org.exoplatform.services.scheduler.PeriodJob</type>
+            <description>add a ForumsWeeklyStatisticJob job to the JobSchedulerService</description>
+            <init-params>
+                <properties-param>
+                    <name>job.info</name>
+                    <description>save the Forums Weekly Statistic data  periodically</description>
+                    <property name="jobName" value="LoggedInCountJob"/>
+                    <property name="groupName" value="KnowlegedSuite"/>
+                    <property name="job" value="org.exoplatform.addons.services.LoggedInCountJob"/>
+                    <property name="repeatCount" value="0"/>
+                    <property name="period" value="10000"/> <!--10 seconds-->
+                    <property name="startTime" value="+0"/>
+                    <property name="endTime" value=""/>
+                </properties-param>
+            </init-params>
+        </component-plugin>
+    </external-component-plugins>
+
 </configuration>
