@@ -334,12 +334,12 @@
     </external-component-plugins>
 
     <external-component-plugins>
-        <target-component>org.exoplatform.addons.listener.AddUserListener</target-component>
+        <target-component>org.exoplatform.services.listener.ListenerService</target-component>
         <component-plugin>
-            <name>send.mail.added.user</name>
-            <set-method>addListenerPlugin</set-method>
-            <type>org.exoplatform.addons.listener.AddUserListener</type>
-            <description>snd mail to account user</description>
+            <name>exo.core.security.ConversationRegistry.register</name>
+            <set-method>addListener</set-method>
+            <type>org.exoplatform.addons.listener.LoggedUserListener</type>
+            <description>add and count user logged in</description>
         </component-plugin>
     </external-component-plugins>
 
